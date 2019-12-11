@@ -46,7 +46,7 @@ export QUESTION_SEARCH='
     <label>Enter search term:</label>
   </text>
   <entry>
-    <default>search for ...</default>
+    <default>SEARCH_TERM</default>
     <variable export="true">SEARCH</variable>
   </entry>
   <hbox>
@@ -216,18 +216,22 @@ export QUESTION_SEARCH='
           <menubar>
             <menu>
               <menuitem>
-                <label>View Installed Applications</label>
+                <label>List @world contents</label>
                 <action>sudo -A cat /var/lib/portage/world &> ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
               </menuitem>
               <menuitem>
-                <label>Open list of Installed Ebuilds</label>
+                <label>List Installed Ebuilds</label>
                 <action>cd /var/db/pkg/ && /bin/ls -d1 */* > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
               </menuitem>
               <menuitem>
-                <label>Search in list of installed Applications</label>
+                <label>Search Installed Ebuilds</label>
                 <action>${GTKDIALOG} --program=QUESTION_SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
               </menuitem>
-              <label>Installed Applications</label>
+              <menuitem>
+                <label>Search Gentoo tree</label>
+                <action>${GTKDIALOG} --program=QUESTION_SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && xterm -hold -e emerge -sS ${SEARCH}</action>
+              </menuitem>
+              <label>Gentoo tree</label>
             </menu>
           </menubar>
         </hbox>
