@@ -38,7 +38,7 @@ export QUESTION_INSTALL='
     <button ok></button>
     <button cancel></button>
   </hbox>
- </vbox>'
+</vbox>'
 
 export QUESTION_SEARCH='
 <vbox>
@@ -53,9 +53,9 @@ export QUESTION_SEARCH='
     <button ok></button>
     <button cancel></button>
   </hbox>
- </vbox>'
+</vbox>'
 
- export MAIN_DIALOG='
+export MAIN_DIALOG='
 <window window_position="1" title="GENTOO System Tools">
 <vbox>
   <hbox homogeneous="True">
