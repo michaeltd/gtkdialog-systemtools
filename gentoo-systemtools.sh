@@ -13,6 +13,7 @@ export GTKDIALOG="$(which gtkdialog)"
 export TMP_FILE="/tmp/${$}.txt"
 [[ -z "${EDITOR}" ]] && export EDITOR="$(which vi||which vim||which nano)"
 [[ -z "${SUDO_ASKPASS}" ]] && export SUDO_ASKPASS="$(which x11-ssh-askpass||which ssh-askpass-fullscreen)"
+[[ -z "${PAGER}" ]] && export PAGER=$(command -v most 2> /dev/null || command -v less 2> /dev/null || command -v more 2> /dev/null)
 
 [[ -z "${GTKDIALOG}" ]] && echo "You need gtkdialog installed." >&2 && exit 1
 [[ -z "${EDITOR}" ]] && echo "You need vim|nano installed." >&2 && exit 1
