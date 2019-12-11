@@ -356,29 +356,13 @@ export MAIN_DIALOG='
         </hbox>
 
         <hbox>
-          <button>
-            <label>'${FILE7}'</label>
-            <action>sudo -A xterm -e ${ed} ${FILE7}</action>
-          </button>
-
-          <button>
-            <input file stock="gtk-dialog-warning"></input>
-            <action>sudo -A xterm -e ${ed} ${FILE7}</action>
-          </button>
-
+          <button><label>'${FILE7}'</label><action>sudo -A xterm -e ${ed} ${FILE7}</action></button>
+          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${ed} ${FILE7}</action></button>
         </hbox>
 
         <hbox>
-          <button>
-            <label>'${FILE8}'</label>
-            <action>xterm -e ${ed} ${FILE8}</action>
-          </button>
-
-          <button>
-            <input file stock="gtk-dialog-warning"></input>
-            <action>sudo -A xterm -e ${ed} ${FILE8}</action>
-          </button>
-
+          <button><label>'${FILE8}'</label><action>xterm -e ${ed} ${FILE8}</action></button>
+          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${ed} ${FILE8}</action></button>
         </hbox>
       </frame>
     </hbox>
