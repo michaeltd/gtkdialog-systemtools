@@ -2,15 +2,16 @@
 
 export GTKDIALOG="$(command -v gtkdialog)"
 
-export FILE1=/etc/X11/xorg.conf.d/20opengl.conf
+export FILE1=/etc/X11/xorg.conf.d
 export FILE2=/etc/fstab
-export FILE3=/boot/grub/grub.cfg
-export FILE4=/etc/apt/sources.list
-export FILE5=~/.conkyrc
+export FILE3=/etc/default/grub
+export FILE4=/etc/portage/repos.conf
+export FILE5=/etc/portage/make.conf
 export FILE6=/etc/rc.conf
 export FILE7=/etc/sudoers
 export FILE8=~/.bashrc
 export FILE9=/root/.bashrc
+
 export tf="/tmp/${$}.txt"
 export ed="$(which vi||which vim||which nano)"
 
@@ -23,7 +24,7 @@ export QUESTION_INSTALL='
     <label>the following apps must be installed:</label>
   </text>
   <text wrap="false" xalign="0">
-    <label>dmidecode lm_sensors lshw mesa-demos xdpyinfo.</label>
+    <label>dmidecode lm_sensors lshw mesa-demos xdpyinfo usbutils.</label>
   </text>
   <text wrap="false" xalign="0">
     <label>Do you want to install them?</label>
@@ -50,7 +51,7 @@ export QUESTION_SEARCH='
  </vbox>'
 
 export MAIN_DIALOG='
-<window window_position="1" title="System Tools">
+<window window_position="1" title="GENTOO System Tools">
 <vbox>
   <hbox homogeneous="True">
     <frame>
@@ -392,9 +393,9 @@ export MAIN_DIALOG='
     <hbox homogeneous="True">
       <button>
         <input file stock="gtk-info"></input>
-        <action>gtkout=$(${GTKDIALOG} --program=QUESTION_INSTALL 2> /dev/null) && export `echo ${gtkout}` && [[ "${EXIT}" =~ "OK" ]] && sudo -A xterm -hold -e emerge --ask mesa-progs xdpyinfo lm-sensors dmidecode lshw</action>
+        <action>gtkout=$(${GTKDIALOG} --program=QUESTION_INSTALL 2> /dev/null) && export `echo ${gtkout}` && [[ "${EXIT}" =~ "OK" ]] && sudo -A xterm -hold -e emerge --ask mesa-progs xdpyinfo lm-sensors dmidecode lshw usbutils</action>
       </button>
-      <text><label>System Tools</label></text>
+      <text><label>GENTOO System Tools</label></text>
       <button>
         <input file stock="gtk-quit"></input>
       </button>
