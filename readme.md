@@ -11,7 +11,7 @@ Based on: https://pclosmag.com/html/Issues/200910/page21.html
   * gtkdialog
   * xterm
   * sudo -A
-  * vi|vim|nano
+  * vim|nano
 
 # What's changed
   * Repurposed from rpm based distro to gentoo
