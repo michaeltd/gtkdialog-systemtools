@@ -14,3 +14,7 @@ Based on: https://pclosmag.com/html/Issues/200910/page21.html
 * Lost zenity in favor of the first available terminal editor
 * Lost multiple gtkdialog button actions for concurrencies sake
 * Lost various temp files for a central exported temp file.
+
+# Screenshot
+
+<p align="center"><a href="assets/gst.png"><img width="200" alt="compiz" src="assets/gst.png"></a></p>
