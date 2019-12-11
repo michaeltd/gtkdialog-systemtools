@@ -1,2 +1,0 @@
-# gtkdialog-systemtools
-gtkdialog systemtools
