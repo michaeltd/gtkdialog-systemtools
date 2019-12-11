@@ -1,15 +1,12 @@
 #!/bin/bash
 
-# cd /var/db/pkg/ && ls -d */*
-# cd /var/db/pkg/ && ls -d */*|sed 's/\/$//'
-# ls -d /var/db/pkg/*/*| cut -f5- -d/
-# cat /var/lib/portage/world
+export GTKDIALOG="$(command -v gtkdialog)"
 
-export FILE1=/etc/X11/xorg.conf.d/30-keyboard.conf
+export FILE1=/etc/X11/xorg.conf.d/20opengl.conf
 export FILE2=/etc/fstab
 export FILE3=/boot/grub/grub.cfg
 export FILE4=/etc/apt/sources.list
-export FILE5=/etc/conky/conky.conf
+export FILE5=~/.conkyrc
 export FILE6=/etc/rc.conf
 export FILE7=/etc/sudoers
 export FILE8=~/.bashrc
@@ -17,9 +14,43 @@ export FILE9=/root/.bashrc
 export tf="/tmp/${$}.txt"
 export ed="$(which vi||which vim||which nano)"
 
+export QUESTION_INSTALL='
+<vbox>
+  <text wrap="false" xalign="0">
+    <label>To be able to perform all the operations,</label>
+  </text>
+  <text wrap="false" xalign="0">
+    <label>the following apps must be installed:</label>
+  </text>
+  <text wrap="false" xalign="0">
+    <label>dmidecode lm_sensors lshw mesa-demos xdpyinfo.</label>
+  </text>
+  <text wrap="false" xalign="0">
+    <label>Do you want to install them?</label>
+  </text>
+  <hbox>
+    <button ok></button>
+    <button cancel></button>
+  </hbox>
+ </vbox>'
+
+export QUESTION_SEARCH='
+<vbox>
+  <text wrap="false" xalign="0">
+    <label>Enter search term:</label>
+  </text>
+  <entry>
+    <default>search for ...</default>
+    <variable export="true">SEARCH</variable>
+  </entry>
+  <hbox>
+    <button ok></button>
+    <button cancel></button>
+  </hbox>
+ </vbox>'
+
 export MAIN_DIALOG='
 <window window_position="1" title="System Tools">
-
 <vbox>
   <hbox homogeneous="True">
     <frame>
@@ -187,17 +218,14 @@ export MAIN_DIALOG='
                 <label>View Installed Applications</label>
                 <action>sudo -A cat /var/lib/portage/world &> ${tf} && xterm -e ${ed} ${tf}</action>
               </menuitem>
-
               <menuitem>
                 <label>Open list of Installed Ebuilds</label>
                 <action>cd /var/db/pkg/ && /bin/ls -d1 */* > ${tf} && xterm -e ${ed} ${tf}</action>
               </menuitem>
-
               <menuitem>
                 <label>Search in list of installed Applications</label>
-                <action>searchKey=($(zenity --entry --text "Enter search term:")) && cd /var/db/pkg/ && /bin/ls -d */* | grep "${searchKey[@]}" > ${tf} && xterm -e ${ed} ${tf}</action>
+                <action>gtkout=$(${GTKDIALOG} --program=QUESTION_SEARCH 2> /dev/null) && export `echo ${gtkout}` && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${tf} && xterm -e ${ed} ${tf}</action>
               </menuitem>
-
               <label>Installed Applications</label>
             </menu>
           </menubar>
@@ -348,7 +376,7 @@ export MAIN_DIALOG='
         <hbox>
           <button>
             <label>'${FILE8}'</label>
-            <action>xterm -e ${ed} ${FILE8} &</action>
+            <action>xterm -e ${ed} ${FILE8}</action>
           </button>
 
           <button>
@@ -364,12 +392,11 @@ export MAIN_DIALOG='
     <hbox homogeneous="True">
       <button>
         <input file stock="gtk-info"></input>
-        <action>zenity --question --ellipsize --no-wrap --text "To be able to perform all the operations, \nthe following apps must be installed: \ndmidecode lm_sensors lshw mesa-demos xdpyinfo. \nDo you want to install them if they are not already installed?"; if [ "$?" = 0 ]; then sudo -A xterm -hold -e emerge --ask mesa-progs xdpyinfo lm-sensors dmidecode lshw; fi</action>
+        <action>gtkout=$(${GTKDIALOG} --program=QUESTION_INSTALL 2> /dev/null) && export `echo ${gtkout}` && [[ "${EXIT}" =~ "OK" ]] && sudo -A xterm -hold -e emerge --ask mesa-progs xdpyinfo lm-sensors dmidecode lshw</action>
       </button>
       <text><label>System Tools</label></text>
       <button>
         <input file stock="gtk-quit"></input>
-        <action type="exit">exit 0</action>
       </button>
     </hbox>
     </frame>
@@ -377,4 +404,7 @@ export MAIN_DIALOG='
   </window>
 '
 
-gtkdialog --program=MAIN_DIALOG
+case "${1}" in
+    -d | --dump) echo "${MAIN_DIALOG}";;
+    *) "${GTKDIALOG}" --program=MAIN_DIALOG;;
+esac

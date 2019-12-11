@@ -1,8 +1,10 @@
 # gtkdialog gentoo-systemtools
 gtkdialog gentoo-systemtools
 
+Based on: https://pclosmag.com/html/Issues/200910/page21.html
+
 # Yes but ...Why?
-1. As a central gathering point of various operations in the gentoo distribution.
+1. As a central gathering localtion of various operations in the gentoo distribution.
 2. Convenience
 
 ## What's new
