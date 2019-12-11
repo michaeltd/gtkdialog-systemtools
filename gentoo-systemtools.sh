@@ -9,8 +9,7 @@ export FILE4=/etc/portage/repos.conf
 export FILE5=/etc/portage/make.conf
 export FILE6=/etc/rc.conf
 export FILE7=/etc/sudoers
-export FILE8=~/.bashrc
-export FILE9=/root/.bashrc
+export FILE8=/etc/bash/bashrc
 
 export tf="/tmp/${$}.txt"
 export ed="$(which vi||which vim||which nano)"
@@ -377,7 +376,7 @@ export MAIN_DIALOG='
 
           <button>
             <input file stock="gtk-dialog-warning"></input>
-            <action>sudo -A xterm -e ${ed} ${FILE9}</action>
+            <action>sudo -A xterm -e ${ed} ${FILE8}</action>
           </button>
 
         </hbox>
