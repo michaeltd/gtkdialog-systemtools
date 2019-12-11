@@ -195,11 +195,6 @@ export MAIN_DIALOG='
             </menuitem>
 
             <menuitem>
-              <label>KDE Version</label>
-              <action>kde-config --version | grep KDE > ${tf} && xterm -e ${ed} ${tf}</action>
-            </menuitem>
-
-            <menuitem>
               <label>Show Path</label>
               <action>echo "${PATH}" > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
