@@ -70,12 +70,12 @@ export QUESTION_SEARCH='
       <vbox homogeneous="True">
         <button>
           <label>TOP</label>
-          <action>xterm -e top</action>
+          <action>xterm -e top &</action>
         </button>
 
         <button>
           <input file stock="gtk-dialog-warning"></input>
-          <action>sudo -A xterm -e top</action>
+          <action>sudo -A xterm -e top &</action>
         </button>
       </vbox>
     </hbox>
@@ -86,7 +86,7 @@ export QUESTION_SEARCH='
 
         <button>
           <label>View messages</label>
-          <action>dmesg > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+          <action>dmesg > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
 
         <entry><variable export="true">VAR2</variable></entry>
@@ -95,7 +95,7 @@ export QUESTION_SEARCH='
           <button>
             <label>search</label>
             <input file stock="gtk-find"></input>
-            <action>dmesg | grep ${VAR2} > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE} </action>
+            <action>dmesg | grep ${VAR2} > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE} </action>
           </button>
 
         </hbox>
@@ -143,43 +143,43 @@ export QUESTION_SEARCH='
         <button homogeneous="true">
         <input file stock="gtk-index"></input>
         <label>Sensors</label>
-        <action>sensors > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+        <action>sensors > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
 
         <button homogeneous="true">
         <input file stock="gtk-connect"></input>
         <label>Ethernet Interfaces</label>
-        <action>ifconfig > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+        <action>ifconfig > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
 
         <button homogeneous="true">
         <input file stock="gtk-disconnect"></input>
         <label>Wireless Interfaces</label>
-        <action>iwconfig > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+        <action>iwconfig > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
 
         <button homogeneous="true">
         <input file stock="gtk-save"></input>
         <label>emerge logs</label>
-        <action>sudo -A xterm -e ${EDITOR} /var/log/emerge.log</action>
+        <action>sudo -A xterm -e ${PAGER} /var/log/emerge.log</action>
         </button>
 
         <button homogeneous="true">
         <input file stock="gtk-floppy"></input>
         <label>Hardware information </label>
-        <action>sudo -A lshw > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+        <action>sudo -A lshw > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
 
         <button homogeneous="true">
         <input file stock="gtk-print-preview"></input>
         <label>BIOS information</label>
-        <action>sudo -A dmidecode | head -15 > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+        <action>sudo -A dmidecode | head -15 > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
 
         <button homogeneous="true">
         <input file stock="gtk-page-setup"></input>
         <label>PCI devices</label>
-        <action>lspci > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+        <action>lspci > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
       </vbox>
     </frame>
@@ -195,12 +195,12 @@ export QUESTION_SEARCH='
           <menu>
             <menuitem>
               <label>Running kernel</label>
-              <action>uname -a > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>uname -a > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
             <menuitem>
               <label>Show Path</label>
-              <action>echo "${PATH}" > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>echo "${PATH}" > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
           <label>System Information</label>
           </menu>
@@ -216,15 +216,15 @@ export QUESTION_SEARCH='
             <menu>
               <menuitem>
                 <label>View Installed Applications</label>
-                <action>sudo -A cat /var/lib/portage/world &> ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+                <action>sudo -A cat /var/lib/portage/world &> ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
               </menuitem>
               <menuitem>
                 <label>Open list of Installed Ebuilds</label>
-                <action>cd /var/db/pkg/ && /bin/ls -d1 */* > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+                <action>cd /var/db/pkg/ && /bin/ls -d1 */* > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
               </menuitem>
               <menuitem>
                 <label>Search in list of installed Applications</label>
-                <action>${GTKDIALOG} --program=QUESTION_SEARCH > ${TMP_FILE} && source ${TMP_FILE} && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+                <action>${GTKDIALOG} --program=QUESTION_SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
               </menuitem>
               <label>Installed Applications</label>
             </menu>
@@ -240,27 +240,27 @@ export QUESTION_SEARCH='
           <menu>
             <menuitem>
               <label>Hard drive partitions</label>
-              <action>sudo -A fdisk -l > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>sudo -A fdisk -l > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
             <menuitem>
               <label>Hard drive UUID</label>
-              <action>blkid > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>blkid > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
               <menuitem>
               <label>Current mount points</label>
-              <action>mount > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>mount > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
             <menuitem>
               <label>Available disk space</label>
-              <action>df -h > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>df -h > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
             <menuitem>
               <label>Connected USB devices</label>
-              <action>lsusb > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>lsusb > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
           <label>Devices</label>
@@ -277,12 +277,12 @@ export QUESTION_SEARCH='
           <menu>
             <menuitem>
               <label>X-Server information</label>
-              <action>xdpyinfo > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>xdpyinfo > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
             <menuitem>
               <label>GLX/OpenGL Information</label>
-              <action>glxinfo > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>glxinfo > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
           <label>X-Server</label>
@@ -299,12 +299,12 @@ export QUESTION_SEARCH='
           <menu>
             <menuitem>
               <label>Group memberships</label>
-              <action>groups > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+              <action>groups > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
             </menuitem>
 
             <menuitem>
               <label>Groups</label>
-              <action>xterm -e ${EDITOR} /etc/group</action>
+              <action>xterm -e ${PAGER} /etc/group</action>
             </menuitem>
 
           <label>Groups</label>
@@ -314,12 +314,12 @@ export QUESTION_SEARCH='
 
         <button>
           <label>Loaded modules</label>
-          <action>lsmod > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+          <action>lsmod > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
 
         <button>
           <label>Services</label>
-          <action>rc-update > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+          <action>rc-update > ${TMP_FILE} && xterm -e ${PAGER} ${TMP_FILE}</action>
         </button>
 
       </vbox>
@@ -329,44 +329,44 @@ export QUESTION_SEARCH='
     <hbox>
       <frame System Files>
         <hbox>
-          <button><label>'${FILE1}'</label><action>xterm -e ${EDITOR} ${FILE1}</action></button>
+          <button><label>'${FILE1}'</label><action>xterm -e ${PAGER} ${FILE1}</action></button>
           <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE1}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE2}'</label><action>xterm -e ${EDITOR} ${FILE2}</action></button>
+          <button><label>'${FILE2}'</label><action>xterm -e ${PAGER} ${FILE2}</action></button>
           <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE2}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE3}'</label><action>xterm -e ${EDITOR} ${FILE3}</action></button>
+          <button><label>'${FILE3}'</label><action>xterm -e ${PAGER} ${FILE3}</action></button>
           <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE3}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE4}'</label><action>xterm -e ${EDITOR} ${FILE4}</action></button>
+          <button><label>'${FILE4}'</label><action>xterm -e ${PAGER} ${FILE4}</action></button>
           <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE4}</action></button>
         </hbox>
       </frame>
 
       <frame>
         <hbox>
-          <button><label>'${FILE5}'</label><action>xterm -e ${EDITOR} ${FILE5}</action></button>
+          <button><label>'${FILE5}'</label><action>xterm -e ${PAGER} ${FILE5}</action></button>
           <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE5}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE6}'</label><action>xterm -e ${EDITOR} ${FILE6}</action></button>
+          <button><label>'${FILE6}'</label><action>xterm -e ${PAGER} ${FILE6}</action></button>
           <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE6}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE7}'</label><action>sudo -A xterm -e ${EDITOR} ${FILE7}</action></button>
+          <button><label>'${FILE7}'</label><action>sudo -A xterm -e ${PAGER} ${FILE7}</action></button>
           <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE7}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE8}'</label><action>xterm -e ${EDITOR} ${FILE8}</action></button>
+          <button><label>'${FILE8}'</label><action>xterm -e ${PAGER} ${FILE8}</action></button>
           <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE8}</action></button>
         </hbox>
       </frame>
