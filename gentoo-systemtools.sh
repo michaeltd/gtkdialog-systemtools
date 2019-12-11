@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export GTKDIALOG="$(command -v gtkdialog)"
-
 export FILE1=/etc/X11/xorg.conf.d
 export FILE2=/etc/fstab
 export FILE3=/etc/default/grub
@@ -13,6 +11,13 @@ export FILE8=/etc/bash/bashrc
 
 export tf="/tmp/${$}.txt"
 export ed="$(which vi||which vim||which nano)"
+export GTKDIALOG="$(command -v gtkdialog)"
+[[ -z "${SUDO_ASKPASS}" ]] && export SUDO_ASKPASS="$(which x11-ssh-askpass||which ssh-askpass-fullscreen)"
+
+[[ -z "${ed}" ]] && echo "You need vim|nano installed." >&2 && exit 1
+[[ -z "${GTKDIALOG}" ]] && echo "You need gtkdialog installed." >&2 && exit 1
+[[ ! -x "$(which xterm)" ]] && echo "You need xterm installed." >&2 && exit 1
+[[ -z "${SUDO_ASKPASS}" ]] && echo "You need x11-ssh-askpass|ssh-askpass-fullscreen installed." >&2 && exit 1
 
 export QUESTION_INSTALL='
 <vbox>
@@ -49,7 +54,7 @@ export QUESTION_SEARCH='
   </hbox>
  </vbox>'
 
-export MAIN_DIALOG='
+ export MAIN_DIALOG='
 <window window_position="1" title="GENTOO System Tools">
 <vbox>
   <hbox homogeneous="True">
@@ -219,7 +224,7 @@ export MAIN_DIALOG='
               </menuitem>
               <menuitem>
                 <label>Search in list of installed Applications</label>
-                <action>gtkout=$(${GTKDIALOG} --program=QUESTION_SEARCH 2> /dev/null) && export `echo ${gtkout}` && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${tf} && xterm -e ${ed} ${tf}</action>
+                <action>${GTKDIALOG} --program=QUESTION_SEARCH > ${tf} && source ${tf} && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${tf} && xterm -e ${ed} ${tf}</action>
               </menuitem>
               <label>Installed Applications</label>
             </menu>
@@ -371,7 +376,7 @@ export MAIN_DIALOG='
     <hbox homogeneous="True">
       <button>
         <input file stock="gtk-info"></input>
-        <action>gtkout=$(${GTKDIALOG} --program=QUESTION_INSTALL 2> /dev/null) && export `echo ${gtkout}` && [[ "${EXIT}" =~ "OK" ]] && sudo -A xterm -hold -e emerge --ask mesa-progs xdpyinfo lm-sensors dmidecode lshw usbutils</action>
+        <action>${GTKDIALOG} --program=QUESTION_INSTALL > ${tf} && source ${tf} && [[ "${EXIT}" == "OK" ]] && sudo -A xterm -hold -e emerge --ask mesa-progs xdpyinfo lm-sensors dmidecode lshw usbutils</action>
       </button>
       <text><label>GENTOO System Tools</label></text>
       <button>
