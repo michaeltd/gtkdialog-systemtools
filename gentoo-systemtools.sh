@@ -70,12 +70,12 @@ export QUESTION_SEARCH='
       <vbox homogeneous="True">
         <button>
           <label>TOP</label>
-          <action>xterm -e top &</action>
+          <action>xterm -e top</action>
         </button>
 
         <button>
           <input file stock="gtk-dialog-warning"></input>
-          <action>sudo -A xterm -e top &</action>
+          <action>sudo -A xterm -e top</action>
         </button>
       </vbox>
     </hbox>
@@ -240,7 +240,7 @@ export QUESTION_SEARCH='
           <menu>
             <menuitem>
               <label>Hard drive partitions</label>
-              <action>sudo -A fdisk -l &> /tmp/${$}.txt && xterm -e vim /tmp/${$}.txt</action>
+              <action>sudo -A fdisk -l > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
             <menuitem>
