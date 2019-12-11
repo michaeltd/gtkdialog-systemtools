@@ -1,5 +1,4 @@
-#! /bin/bash
-Encoding="UTF-8"
+#!/bin/bash
 
 # cd /var/db/pkg/ && ls -d */*
 # cd /var/db/pkg/ && ls -d */*|sed 's/\/$//'
@@ -160,17 +159,17 @@ export MAIN_DIALOG='
           <menu>
             <menuitem>
               <label>Running kernel</label>
-              <action>uname -a | zenity --text-info --title "Current running kernel" &</action>
+              <action>uname -a > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
             <menuitem>
               <label>KDE Version</label>
-              <action>kde-config --version | grep KDE | zenity --text-info --title "KDE Version" &</action>
+              <action>kde-config --version | grep KDE > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
             <menuitem>
               <label>Show Path</label>
-              <action>echo "${PATH}" | zenity --text-info  --title "PATH" &</action>
+              <action>echo "${PATH}" > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
           <label>System Information</label>
           </menu>
@@ -218,22 +217,22 @@ export MAIN_DIALOG='
 
             <menuitem>
               <label>Hard drive UUID</label>
-              <action>blkid | zenity --text-info  --width=700 --height=500 --title "Hard Drive UUID" &</action>
+              <action>blkid > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
               <menuitem>
               <label>Current mount points</label>
-              <action>mount | zenity --text-info  --width=700 --height=500 --title "Current mount points" & </action>
+              <action>mount > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
             <menuitem>
               <label>Available disk space</label>
-              <action>df -h | zenity --text-info  --width=700 --height=500 --title "Available disk space"  &</action>
+              <action>df -h > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
             <menuitem>
               <label>Connected USB devices</label>
-              <action>lsusb | zenity --text-info  --width=700 --height=500 --title $"Connected USB devices" &</action>
+              <action>lsusb > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
           <label>Devices</label>
@@ -250,12 +249,12 @@ export MAIN_DIALOG='
           <menu>
             <menuitem>
               <label>X-Server information</label>
-              <action>xdpyinfo | zenity --text-info  --width=700 --height=500 --title $"Information about the X-server" &</action>
+              <action>xdpyinfo > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
             <menuitem>
               <label>GLX/OpenGL Information</label>
-              <action>glxinfo | zenity --text-info  --width=700 --height=500 --title $"Information about glx and opengl" & </action>
+              <action>glxinfo > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
           <label>X-Server</label>
@@ -272,12 +271,12 @@ export MAIN_DIALOG='
           <menu>
             <menuitem>
               <label>Group memberships</label>
-              <action>groups | zenity --text-info  --width=700 --height=100 --title $"View group memberships" &</action>
+              <action>groups > ${tf} && xterm -e ${ed} ${tf}</action>
             </menuitem>
 
             <menuitem>
               <label>Groups</label>
-              <action>cat /etc/group | zenity --text-info  --width=700 --height=500 --title $"View Groups" &</action>
+              <action>xterm -e ${ed} /etc/group</action>
             </menuitem>
 
           <label>Groups</label>
@@ -287,12 +286,12 @@ export MAIN_DIALOG='
 
         <button>
           <label>Loaded modules</label>
-          <action>lsmod | zenity --text-info  --width=700 --height=500 --title $"View loaded modules" &</action>
+          <action>lsmod > ${tf} && xterm -e ${ed} ${tf}</action>
         </button>
 
         <button>
           <label>Services</label>
-          <action>chkconfig --list | zenity --text-info  --width=900 --height=600 --title $"View Services" &</action>
+          <action>rc-update > ${tf} && xterm -e ${ed} ${tf}</action>
         </button>
 
       </vbox>
@@ -302,46 +301,46 @@ export MAIN_DIALOG='
     <hbox>
       <frame System Files>
         <hbox>
-          <button><label>'${FILE1}'</label><action>zenity --title='"$FILE1"' --text-info --width 500 --height 400 --filename='"$FILE1"' &</action></button>
-          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A gvim '"$FILE1"' &</action></button>
+          <button><label>'${FILE1}'</label><action>xterm -e ${ed} ${FILE1}</action></button>
+          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${ed} ${FILE1}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE2}'</label><action>zenity --title='"$FILE2"' --text-info --width 500 --height 400 --filename='"$FILE2"' &</action></button>
-          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A gvim '"$FILE2"' &</action></button>
+          <button><label>'${FILE2}'</label><action>xterm -e ${ed} ${FILE2}</action></button>
+          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${ed} ${FILE2}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE3}'</label><action>zenity --title='"$FILE3"' --text-info --width 500 --height 400 --filename='"$FILE3"' &</action></button>
-          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A gvim '"$FILE3"' &</action></button>
+          <button><label>'${FILE3}'</label><action>xterm -e ${ed} ${FILE3}</action></button>
+          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${ed} ${FILE3}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE4}'</label><action>zenity --title='"$FILE4"' --text-info --width 500 --height 400 --filename='"$FILE4"' &</action></button>
-          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A gvim '"$FILE4"' &</action></button>
-</hbox>
+          <button><label>'${FILE4}'</label><action>xterm -e ${ed} ${FILE4}</action></button>
+          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${ed} ${FILE4}</action></button>
+        </hbox>
       </frame>
 
       <frame>
         <hbox>
-          <button><label>'${FILE5}'</label><action>zenity --title='"$FILE5"' --text-info --width 500 --height 400 --filename='"$FILE5"' &</action></button>
-          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A gvim '"$FILE5"' &</action></button>
+          <button><label>'${FILE5}'</label><action>xterm -e ${ed} ${FILE5}</action></button>
+          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${ed} ${FILE5}</action></button>
         </hbox>
 
         <hbox>
-          <button><label>'${FILE6}'</label><action>zenity --title='"$FILE6"' --text-info --width 500 --height 400 --filename='"$FILE6"' &</action></button>
-          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A gvim '"$FILE6"' &</action></button>
+          <button><label>'${FILE6}'</label><action>xterm -e ${ed} ${FILE6}</action></button>
+          <button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${ed} ${FILE6}</action></button>
         </hbox>
 
         <hbox>
           <button>
             <label>'${FILE7}'</label>
-            <action>sudo -A "zenity --title='"$FILE7"' --text-info --width 500 --height 400 --filename='"$FILE7"'" &</action>
+            <action>sudo -A xterm -e ${ed} ${FILE7}</action>
           </button>
 
           <button>
             <input file stock="gtk-dialog-warning"></input>
-            <action>sudo -A xterm -e vim ${FILE7}</action>
+            <action>sudo -A xterm -e ${ed} ${FILE7}</action>
           </button>
 
         </hbox>
@@ -349,12 +348,12 @@ export MAIN_DIALOG='
         <hbox>
           <button>
             <label>'${FILE8}'</label>
-            <action>xterm -e vim ${FILE8} &</action>
+            <action>xterm -e ${ed} ${FILE8} &</action>
           </button>
 
           <button>
             <input file stock="gtk-dialog-warning"></input>
-            <action>sudo -A xterm -e vim ${FILE9}</action>
+            <action>sudo -A xterm -e ${ed} ${FILE9}</action>
           </button>
 
         </hbox>
@@ -376,6 +375,6 @@ export MAIN_DIALOG='
     </frame>
   </vbox>
   </window>
-  '
+'
 
 gtkdialog --program=MAIN_DIALOG
