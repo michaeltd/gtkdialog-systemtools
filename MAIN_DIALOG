@@ -2,17 +2,17 @@
 export MAIN_DIALOG='
 <window window_position="1" title="GENTOO System Tools">
 <vbox>
-<hbox homogeneous="True">
+<hbox homogeneous="true">
 <frame>
-<hbox homogeneous="True">
-<hbox>
+<hbox space-expand="true" space-fill="true">
+<hbox space-expand="true" space-fill="true">
 <button>
 <input file stock="gtk-network"></input>
 <action>xterm &</action>
 </button>
 </hbox>
 
-<vbox homogeneous="True">
+<vbox space-expand="true" space-fill="true">
 <button>
 <label>TOP</label>
 <action>xterm -e top &</action>
@@ -26,7 +26,7 @@ export MAIN_DIALOG='
 </hbox>
 </frame>
 
-<vbox>
+<vbox space-expand="true" space-fill="true">
 <frame Kernel messages>
 <button>
 <label>View messages</label>
@@ -36,7 +36,7 @@ export MAIN_DIALOG='
 <entry><variable export="true">VAR2</variable></entry>
 
 <hbox>
-<button>
+<button space-expand="true" space-fill="true">
 <label>search</label>
 <input file stock="gtk-find"></input>
 <action>dmesg | grep ${VAR2} > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE} </action>
@@ -129,7 +129,7 @@ export MAIN_DIALOG='
 </frame>
 
 <frame>
-<vbox>
+<vbox space-expand="true" space-fill="true">
 <hbox>
 <pixmap>
 <input file stock="gtk-about"></input>
