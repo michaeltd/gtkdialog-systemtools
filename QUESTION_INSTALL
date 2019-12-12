@@ -1,16 +1,16 @@
 export QUESTION_INSTALL='
 <vbox>
 <text wrap="false" xalign="0">
-<label>To be able to perform all the operations,</label>
+<label>To be able to perform all operations,</label>
 </text>
 <text wrap="false" xalign="0">
-<label>the following apps must be installed:</label>
+<label>following apps must be installed:</label>
 </text>
 <text wrap="false" xalign="0">
 <label>dmidecode lm_sensors lshw mesa-demos xdpyinfo usbutils.</label>
 </text>
 <text wrap="false" xalign="0">
-<label>Do you want to install them?</label>
+<label>Would you like to install them?</label>
 </text>
 <hbox>
 <button ok></button>
