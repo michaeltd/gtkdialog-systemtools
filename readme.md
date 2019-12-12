@@ -24,5 +24,6 @@ Based on: https://pclosmag.com/html/Issues/200910/page21.html
   * As direct access to troubleshooting information.
   * Central {hard,soft}ware reporting.
   * Convenience.
+  * To fiddle with gtkdialog.
   * Why not?
   * coz... reasons...
