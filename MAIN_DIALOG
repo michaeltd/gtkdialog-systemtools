@@ -3,7 +3,7 @@ export MAIN_DIALOG='
 <window window_position="1" title="GENTOO System Tools">
 <vbox>
 <hbox homogeneous="true">
-<frame>
+<frame terminal, top, sudo top>
 <hbox space-expand="true" space-fill="true">
 <hbox space-expand="true" space-fill="true">
 <button>
@@ -277,45 +277,91 @@ export MAIN_DIALOG='
 <hbox>
 <frame System Files>
 <hbox>
-<button><label>'${FILE1}'</label><action>xterm -e ${EDITOR} ${FILE1}</action></button>
-<button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE1}</action></button>
+<button>
+<label>'${FILE1}'</label>
+<action>xterm -e ${EDITOR} ${FILE1}</action>
+</button>
+<button>
+<input file stock="gtk-dialog-warning"></input>
+<action>sudo -A xterm -e ${EDITOR} ${FILE1}</action>
+</button>
 </hbox>
 
 <hbox>
-<button><label>'${FILE2}'</label><action>xterm -e ${EDITOR} ${FILE2}</action></button>
-<button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE2}</action></button>
+<button>
+<label>'${FILE2}'</label>
+<action>xterm -e ${EDITOR} ${FILE2}</action>
+</button>
+<button>
+<input file stock="gtk-dialog-warning"></input>
+<action>sudo -A xterm -e ${EDITOR} ${FILE2}</action>
+</button>
 </hbox>
 
 <hbox>
-<button><label>'${FILE3}'</label><action>xterm -e ${EDITOR} ${FILE3}</action></button>
-<button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE3}</action></button>
+<button>
+<label>'${FILE3}'</label>
+<action>xterm -e ${EDITOR} ${FILE3}</action>
+</button>
+<button><input file stock="gtk-dialog-warning"></input>
+<action>sudo -A xterm -e ${EDITOR} ${FILE3}</action>
+</button>
 </hbox>
 
 <hbox>
-<button><label>'${FILE4}'</label><action>xterm -e ${EDITOR} ${FILE4}</action></button>
-<button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE4}</action></button>
+<button>
+<label>'${FILE4}'</label>
+<action>xterm -e ${EDITOR} ${FILE4}</action>
+</button>
+<button><input file stock="gtk-dialog-warning"></input>
+<action>sudo -A xterm -e ${EDITOR} ${FILE4}</action>
+</button>
 </hbox>
 </frame>
 
 <frame>
 <hbox>
-<button><label>'${FILE5}'</label><action>xterm -e ${EDITOR} ${FILE5}</action></button>
-<button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE5}</action></button>
+<button>
+<label>'${FILE5}'</label>
+<action>xterm -e ${EDITOR} ${FILE5}</action>
+</button>
+<button>
+<input file stock="gtk-dialog-warning"></input>
+<action>sudo -A xterm -e ${EDITOR} ${FILE5}</action>
+</button>
 </hbox>
 
 <hbox>
-<button><label>'${FILE6}'</label><action>xterm -e ${EDITOR} ${FILE6}</action></button>
-<button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE6}</action></button>
+<button>
+<label>'${FILE6}'</label>
+<action>xterm -e ${EDITOR} ${FILE6}</action>
+</button>
+<button>
+<input file stock="gtk-dialog-warning"></input>
+<action>sudo -A xterm -e ${EDITOR} ${FILE6}</action>
+</button>
 </hbox>
 
 <hbox>
-<button><label>'${FILE7}'</label><action>sudo -A xterm -e ${EDITOR} ${FILE7}</action></button>
-<button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE7}</action></button>
+<button>
+<label>'${FILE7}'</label>
+<action>sudo -A xterm -e ${EDITOR} ${FILE7}</action>
+</button>
+<button>
+<input file stock="gtk-dialog-warning"></input>
+<action>sudo -A xterm -e ${EDITOR} ${FILE7}</action>
+</button>
 </hbox>
 
 <hbox>
-<button><label>'${FILE8}'</label><action>xterm -e ${EDITOR} ${FILE8}</action></button>
-<button><input file stock="gtk-dialog-warning"></input><action>sudo -A xterm -e ${EDITOR} ${FILE8}</action></button>
+<button>
+<label>'${FILE8}'</label>
+<action>xterm -e ${EDITOR} ${FILE8}</action>
+</button>
+<button>
+<input file stock="gtk-dialog-warning"></input>
+<action>sudo -A xterm -e ${EDITOR} ${FILE8}</action>
+</button>
 </hbox>
 </frame>
 </hbox>
