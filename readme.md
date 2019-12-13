@@ -20,10 +20,10 @@ Based on: https://pclosmag.com/html/Issues/200910/page21.html
   * Lost various temp files for a central exported temp file.
 
 # Yes but ...Why?
-  * As a central gathering location of various operations in the gentoo distribution.
-  * As direct access to troubleshooting information.
-  * Central {hard,soft}ware reporting.
+  * coz... reasons...
+  * Why not?
   * Convenience.
   * To fiddle with gtkdialog.
-  * Why not?
-  * coz... reasons...
+  * Central {hard,soft}ware reporting.
+  * As direct access to troubleshooting information.
+  * As a collection of various gentoo configuration files and reporting tools.
