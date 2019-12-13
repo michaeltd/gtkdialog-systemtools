@@ -11,12 +11,13 @@ Based on: https://pclosmag.com/html/Issues/200910/page21.html
   * gtkdialog
   * xterm
   * sudo -A
+    x11-ssh-askpass/ssh-askpass-fullscreen or equivalent must be installed and configured
   * vim|nano
 
 # What's changed
-  * Repurposed from rpm based distro to gentoo
+  * Repurposed from PCLinuxOS to gentoo
   * Lost zenity in favor of the first available terminal editor
-  * Lost multiple gtkdialog button actions for concurrencies sake
+  * Lost multiple gtkdialog button action tags, for concurrencies sake
   * Lost various temp files for a central exported temp file.
 
 # Yes but ...Why?
