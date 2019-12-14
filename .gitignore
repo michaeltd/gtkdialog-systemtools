@@ -1,8 +1,8 @@
 *
-!readme.md
-!license
 !gentoo-systemtools.sh
-!assets/gst.png
 !QUESTION_SEARCH
 !QUESTION_INSTALL
 !MAIN_DIALOG
+!readme.md
+!license
+!assets/gst.png
