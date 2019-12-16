@@ -1,6 +1,6 @@
 #shellcheck disable=SC2016 # GO HOME SHELLCHECK, YOU'RE DRUNK!!!
 export MAIN='
-<window window_position="1" title="GENTOO System Tools">
+<window title="GENTOO System Tools">
 <vbox>
 <hbox homogeneous="true">
 <frame terminal, top, sudo top>
@@ -168,11 +168,11 @@ export MAIN='
 </menuitem>
 <menuitem>
 <label>Search Installed Ebuilds</label>
-<action>${GTKDIALOG} --program=SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
+<action>${GTKDIALOG} --center --program=SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${TMP_FILE} && xterm -e ${EDITOR} ${TMP_FILE}</action>
 </menuitem>
 <menuitem>
 <label>Search Portage tree</label>
-<action>${GTKDIALOG} --program=QUESTION_SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && xterm -hold -e emerge -sS ${SEARCH}</action>
+<action>${GTKDIALOG} --center --program=SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && xterm -hold -e emerge -sS ${SEARCH}</action>
 </menuitem>
 <label>Portage tree</label>
 </menu>
@@ -370,7 +370,7 @@ export MAIN='
 <hbox homogeneous="True">
 <button>
 <input file stock="gtk-info"></input>
-<action>${GTKDIALOG} --program=INSTALL > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && sudo -A xterm -hold -e emerge --ask mesa-progs xdpyinfo lm-sensors dmidecode lshw usbutils</action>
+<action>${GTKDIALOG} --center --program=INSTALL > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && sudo -A xterm -hold -e emerge --ask mesa-progs xdpyinfo lm-sensors dmidecode lshw usbutils</action>
 </button>
 <text><label>GENTOO System Tools</label></text>
 <button>

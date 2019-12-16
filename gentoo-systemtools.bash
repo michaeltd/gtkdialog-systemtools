@@ -34,5 +34,5 @@ source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/MAIN"
 
 case "${1}" in
     -d | --dump) echo "${MAIN}";;
-    *) "${GTKDIALOG}" --program=MAIN;;
+    *) "${GTKDIALOG}" --center --program=MAIN;;
 esac
