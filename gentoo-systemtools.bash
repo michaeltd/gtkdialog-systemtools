@@ -26,13 +26,13 @@ export TMP_FILE="/tmp/${$}.txt"
 [[ ! -x "$(type -P xterm 2> /dev/null)" ]] && echo "You need xterm installed." >&2 && exit 1
 [[ -z "${SUDO_ASKPASS}" ]] && echo "You need x11-ssh-askpass|ssh-askpass-fullscreen installed." >&2 && exit 1
 
-source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/QUESTION_INSTALL"
+source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/INSTALL"
 
-source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/QUESTION_SEARCH"
+source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/SEARCH"
 
-source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/MAIN_DIALOG"
+source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/MAIN"
 
 case "${1}" in
-    -d | --dump) echo "${MAIN_DIALOG}";;
-    *) "${GTKDIALOG}" --program=MAIN_DIALOG;;
+    -d | --dump) echo "${MAIN}";;
+    *) "${GTKDIALOG}" --program=MAIN;;
 esac
