@@ -25,6 +25,6 @@ Based on: https://pclosmag.com/html/Issues/200910/page21.html
   * Why not?
   * Convenience.
   * To fiddle with gtkdialog.
-  * Central {hard,soft}ware reporting.
-  * As direct access to troubleshooting information.
+  * For central {hard,soft}ware reporting.
+  * For direct access to troubleshooting information.
   * As a collection of various gentoo configuration files and reporting tools.
