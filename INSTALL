@@ -1,16 +1,16 @@
 export INSTALL='
 <vbox>
-<text wrap="false" xalign="0">
-<label>To be able to perform operations, following utils must be installed:</label>
-</text>
-<text wrap="false" xalign="0">
-<label>dmidecode lm_sensors lshw mesa-demos xdpyinfo usbutils.</label>
-</text>
-<text wrap="false" xalign="0">
-<label>Would you like to install them?</label>
-</text>
-<hbox>
-<button ok></button>
-<button cancel></button>
-</hbox>
+  <text wrap="false" xalign="0">
+    <label>To be able to perform operations, following utils must be installed:</label>
+  </text>
+  <text wrap="false" xalign="0">
+    <label>dmidecode lm_sensors lshw mesa-demos xdpyinfo usbutils.</label>
+  </text>
+  <text wrap="false" xalign="0">
+    <label>Would you like to install them?</label>
+  </text>
+  <hbox>
+    <button ok></button>
+    <button cancel></button>
+  </hbox>
 </vbox>'
