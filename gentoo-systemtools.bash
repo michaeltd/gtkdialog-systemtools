@@ -14,8 +14,25 @@ export FILE8=/etc/bash/bashrc
 #shellcheck disable=SC2155
 export GTKDIALOG="$(type -P gtkdialog 2> /dev/null)"
 export TMP_FILE="/tmp/${$}.txt"
+
+#shellcheck disable=SC2034 # GO HOME SHELLCHECK, YOU'RE DRUNK!!!
+#[[ -z "${EDITOR}" ]] && export EDITOR="$(type -P vi 2> /dev/null||type -P vim 2> /dev/null||type -P nano 2> /dev/null)"
 #shellcheck disable=SC2155
-[[ -z "${EDITOR}" ]] && export EDITOR="$(type -P vi 2> /dev/null||type -P vim 2> /dev/null||type -P nano 2> /dev/null)"
+[[ -z "${TERMINAL}" ]] && TERMINAL=( "$(type -P gnome-terminal||type -P konsole||type -P xfce4-terminal||type -P terminology||type -P xterm)" )
+
+# DONT MESS WITH VOODOO!!!
+if [[ "${TERMINAL##*/}" ==  "gnome-terminal" ]];then
+    TERMINAL+=( "-e" ) #gnome has no -h option
+elif [[ "${TERMINAL##*/}" ==  "xterm" ]];then
+    TERMINAL+=( "-hold" "-e" ) #xterm has no --hold option
+else
+    TERMINAL+=( "--hold" "-e" )
+fi
+
+export TERMINAL
+
+#shellcheck disable=SC2155
+[[ -z "${EDITOR}" ]] && export EDITOR="$(type -P gedit||type -P kate||type -P mousepad||type -P gvim)"
 #shellcheck disable=SC2155
 [[ -z "${SUDO_ASKPASS}" ]] && export SUDO_ASKPASS="$(type -P x11-ssh-askpass 2> /dev/null||type -P ssh-askpass-fullscreen 2> /dev/null)"
 #shellcheck disable=SC2155
@@ -27,9 +44,7 @@ export TMP_FILE="/tmp/${$}.txt"
 [[ -z "${SUDO_ASKPASS}" ]] && echo "You need x11-ssh-askpass|ssh-askpass-fullscreen installed." >&2 && exit 1
 
 source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/INSTALL"
-
 source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/SEARCH"
-
 source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/MAIN"
 
 case "${1}" in

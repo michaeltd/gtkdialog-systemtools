@@ -1,14 +1,14 @@
 export SEARCH='
-<vbox>
-<text wrap="false" xalign="0">
-<label>Enter search term:</label>
-</text>
-<entry>
-<default>SEARCH_TERM</default>
-<variable export="true">SEARCH</variable>
-</entry>
-<hbox>
-<button ok></button>
-<button cancel></button>
-</hbox>
+  <vbox>
+    <text wrap="false" xalign="0">
+      <label>Enter search term:</label>
+    </text>
+    <entry>
+      <default>SEARCH_TERM</default>
+      <variable export="true">SEARCH</variable>
+    </entry>
+  <hbox>
+    <button ok></button>
+    <button cancel></button>
+  </hbox>
 </vbox>'
