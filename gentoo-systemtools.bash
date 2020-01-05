@@ -18,29 +18,27 @@ export TMP_FILE="/tmp/${$}.txt"
 #shellcheck disable=SC2034 # GO HOME SHELLCHECK, YOU'RE DRUNK!!!
 #[[ -z "${EDITOR}" ]] && export EDITOR="$(type -P vi 2> /dev/null||type -P vim 2> /dev/null||type -P nano 2> /dev/null)"
 #shellcheck disable=SC2155
-[[ -z "${TERMINAL}" ]] && TERMINAL=( "$(type -P gnome-terminal||type -P konsole||type -P xfce4-terminal||type -P terminology||type -P xterm)" )
+[[ -z "${TERMINAL}" ]] && export TERMINAL=( "$(type -P gnome-terminal||type -P konsole||type -P xfce4-terminal||type -P terminology||type -P xterm)" )
 
 # DONT MESS WITH VOODOO!!!
 if [[ "${TERMINAL##*/}" ==  "gnome-terminal" ]];then
-    TERMINAL+=( "-e" ) #gnome has no -h option
+    export TERMINAL+=( "-e" ) #gnome has no -h option
 elif [[ "${TERMINAL##*/}" ==  "xterm" ]];then
-    TERMINAL+=( "-hold" "-e" ) #xterm has no --hold option
+    export TERMINAL+=( "-hold" "-e" ) #xterm has no --hold option
 else
-    TERMINAL+=( "--hold" "-e" )
+    export TERMINAL+=( "--hold" "-e" )
 fi
-
-export TERMINAL
 
 #shellcheck disable=SC2155
 [[ -z "${EDITOR}" ]] && export EDITOR="$(type -P gedit||type -P kate||type -P mousepad||type -P gvim)"
 #shellcheck disable=SC2155
-[[ -z "${SUDO_ASKPASS}" ]] && export SUDO_ASKPASS="$(type -P x11-ssh-askpass 2> /dev/null||type -P ssh-askpass-fullscreen 2> /dev/null)"
+[[ -z "${SUDO_ASKPASS}" ]] && export SUDO_ASKPASS="$(type -P x11-ssh-askpass||type -P ssh-askpass-fullscreen)"
 #shellcheck disable=SC2155
-[[ -z "${PAGER}" ]] && export PAGER="$(type -P most 2> /dev/null||type -P less 2> /dev/null||type -P more 2> /dev/null)"
+[[ -z "${PAGER}" ]] && export PAGER="$(type -P most||type -P less||type -P more)"
 
 [[ -z "${GTKDIALOG}" ]] && echo "You need gtkdialog installed." >&2 && exit 1
-[[ -z "${EDITOR}" ]] && echo "You need vim|nano installed." >&2 && exit 1
-[[ ! -x "$(type -P xterm 2> /dev/null)" ]] && echo "You need xterm installed." >&2 && exit 1
+[[ -z "${TERMINAL}" ]] && echo "You need to set a valid \$TERMINAL." >&2 && exit 1
+[[ -z "${EDITOR}" ]] && echo "You need to set a valid \$EDITOR." >&2 && exit 1
 [[ -z "${SUDO_ASKPASS}" ]] && echo "You need x11-ssh-askpass|ssh-askpass-fullscreen installed." >&2 && exit 1
 
 source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/INSTALL"

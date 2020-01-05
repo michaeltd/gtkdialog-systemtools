@@ -9,10 +9,9 @@ Based on: https://pclosmag.com/html/Issues/200910/page21.html
 
 # Depends ...
   * gtkdialog
-  * xterm
-  * sudo -A
-    x11-ssh-askpass/ssh-askpass-fullscreen or equivalent must be installed and configured
-  * vim|nano
+  * gnome-terminal|konsole|xfce4-terminal|terminology|xterm
+  * gedit|kate|mousepad|gvim
+  * sudo -A ie: x11-ssh-askpass/ssh-askpass-fullscreen or equivalent must be installed and configured
 
 # What's changed
   * Repurposed from PCLinuxOS to gentoo
