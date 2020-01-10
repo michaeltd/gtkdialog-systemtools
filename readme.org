@@ -1,4 +1,4 @@
-#+title: gentoo-systemtools
+#+title: gtkdialog-systemtools
 #+author: michaeltd
 #+date: <2020-01-10 Fri>
 #+html: <p align="center"><a href="assets/gst.png"><img alt="gentoo-systemtools.sh" src="assets/gst.png"></a></p>
