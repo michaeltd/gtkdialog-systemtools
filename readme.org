@@ -1,0 +1,29 @@
+#+title: gentoo-systemtools
+#+author: michaeltd
+#+date: <2020-01-10 Fri>
+#+html: <p align="center"><a href="assets/gst.png"><img alt="gentoo-systemtools.sh" src="assets/gst.png"></a></p>
+
+Based on: https://pclosmag.com/html/Issues/200910/page21.html
+
+* Depends ...
+  1) gtkdialog
+  2) gnome-terminal|konsole|xfce4-terminal|terminology|xterm
+  3) gedit|kate|mousepad|gvim
+  4) sudo -A ie: x11-ssh-askpass/ssh-askpass-fullscreen or equivalent must be installed and configured
+
+* What's changed
+  - Repurposed from PCLinuxOS to gentoo
+  - Lost zenity in favor of the first available terminal editor
+  - Lost multiple gtkdialog button action tags, for concurrencies sake
+  - Lost various temp files for a central exported temp file.
+
+* But... WHY?
+  + As a collection of various gentoo configuration files and reporting tools.
+  + For direct access to troubleshooting information.
+  + For central {hard,soft}ware reporting.
+  + Convenience.
+  + To fiddle with gtkdialog.
+  + I couldn't resist!
+  + Why not?
+  + coz... reasons...
+  + I'm sorry...
