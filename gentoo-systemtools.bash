@@ -41,11 +41,11 @@ fi
 [[ -z "${EDITOR}" ]] && echo "You need to set a valid \$EDITOR." >&2 && exit 1
 [[ -z "${SUDO_ASKPASS}" ]] && echo "You need x11-ssh-askpass|ssh-askpass-fullscreen installed." >&2 && exit 1
 
-source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/INSTALL"
-source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/SEARCH"
-source "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/MAIN"
+for i in "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"/*\.frm; do
+    source "${i}"
+done
 
 case "${1}" in
-    -d | --dump) echo "${MAIN}";;
-    *) "${GTKDIALOG}" --center --program=MAIN;;
+    -d|--debug) echo "${MAIN}";;
+    *) "${GTKDIALOG}" --program=MAIN;;
 esac

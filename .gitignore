@@ -3,6 +3,9 @@
 !SEARCH
 !INSTALL
 !MAIN
+!SEARCH.frm
+!INSTALL.frm
+!MAIN.frm
 !readme.md
 !readme.org
 !license
