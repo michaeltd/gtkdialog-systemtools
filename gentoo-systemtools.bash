@@ -41,7 +41,7 @@ fi
 [[ -z "${EDITOR}" ]] && echo "You need to set a valid \$EDITOR." >&2 && exit 1
 [[ -z "${SUDO_ASKPASS}" ]] && echo "You need x11-ssh-askpass|ssh-askpass-fullscreen installed." >&2 && exit 1
 
-for i in "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"/*\.frm; do
+for i in "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"/*\.src; do
     source "${i}"
 done
 
