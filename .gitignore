@@ -1,14 +1,8 @@
 *
 !.gitattributes
 !gentoo-systemtools.bash
-!SEARCH
-!INSTALL
-!MAIN
-!SEARCH.frm
 !SEARCH.src
-!INSTALL.frm
 !INSTALL.src
-!MAIN.frm
 !MAIN.src
 !readme.md
 !readme.org
