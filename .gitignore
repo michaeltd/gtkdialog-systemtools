@@ -1,10 +1,12 @@
 *
 !.gitattributes
-!gentoo-systemtools.bash
-!SEARCH.src
+!.gitignore
 !INSTALL.src
 !MAIN.src
-!readme.md
-!readme.org
+!SEARCH.src
+!assets/*
+!code_of_conduct.md
+!contributing.md
+!gentoo-systemtools.bash
 !license
-!assets/gst.png
+!readme.org
