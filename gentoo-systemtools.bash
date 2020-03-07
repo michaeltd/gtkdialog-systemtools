@@ -11,8 +11,13 @@ export FILE5=/etc/portage/make.conf
 export FILE6=/etc/rc.conf
 export FILE7=/etc/sudoers
 export FILE8=/etc/bash/bashrc
+
 #shellcheck disable=SC2155
 export GTKDIALOG="$(type -P gtkdialog 2> /dev/null)"
+export TMP_DIR="/tmp/${USER}/$(basename ${BASH_SOURCE[0]/\.bash/})/${$}/"
+
+mkdir -vp "${TMP_DIR}" 
+
 export TMP_FILE="/tmp/${$}.txt"
 
 #shellcheck disable=SC2034 # GO HOME SHELLCHECK, YOU'RE DRUNK!!!

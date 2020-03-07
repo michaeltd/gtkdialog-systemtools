@@ -1,247 +1,242 @@
 #shellcheck disable=SC2016 # GO HOME SHELLCHECK, YOU'RE DRUNK!!!
 export MAIN='
-<window title="GENTOO System Tools">
-<vbox>
-<hbox homogeneous="true">
-<frame terminal, top, sudo top>
-<hbox space-expand="true" space-fill="true">
-<hbox space-expand="true" space-fill="true">
-<button>
-<input file stock="gtk-network"></input>
-<action>'"${TERMINAL[0]}"' &</action>
-</button>
-</hbox>
+    <window title="GENTOO System Tools">
+      <vbox>
+	<hbox homogeneous="true">
+	  <frame terminal, top, sudo top>
+	  <hbox space-expand="true" space-fill="true">
+	    <hbox space-expand="true" space-fill="true">
+	      <button>
+		<input file stock="gtk-network"></input>
+		<action>'"${TERMINAL[0]}"' &</action>
+	      </button>
+	    </hbox>
 
-<vbox space-expand="true" space-fill="true">
-<button>
-<label>TOP</label>
-<action>'"${TERMINAL[@]}"' top &</action>
-</button>
+	    <vbox space-expand="true" space-fill="true">
+	      <button>
+		<label>TOP</label>
+		<action>'"${TERMINAL[@]}"' top &</action>
+	      </button>
 
-<button>
-<input file stock="gtk-dialog-warning"></input>
-<action>sudo -A '"${TERMINAL[@]}"' top &</action>
-</button>
-</vbox>
-</hbox>
-</frame>
+	      <button>
+		<input file stock="gtk-dialog-warning"></input>
+		<action>sudo -A '"${TERMINAL[@]}"' top &</action>
+	      </button>
+	    </vbox>
+	  </hbox>
+          </frame>
+	  <vbox space-expand="true" space-fill="true">
+	    <frame Kernel messages>
+	    <button>
+	      <label>View messages</label>
+	      <action>dmesg > "${TMP_DIR}/dmesg.out" && ${EDITOR} "${TMP_DIR}/dmesg.out"</action>
+	    </button>
+	    <entry><variable export="true">VAR2</variable></entry>
+	    <hbox>
+	      <button space-expand="true" space-fill="true">
+		<label>search</label>
+		<input file stock="gtk-find"></input>
+		<action>dmesg | grep ${VAR2} > "${TMP_DIR}/dmesg.grep.var2.out" && ${EDITOR} "${TMP_DIR}/dmesg.grep.var2.out"</action>
+	      </button>
+	    </hbox>
+            </frame>
+	  </vbox>
+	</hbox>
 
-<vbox space-expand="true" space-fill="true">
-<frame Kernel messages>
-<button>
-<label>View messages</label>
-<action>dmesg > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	<frame Commands Information>
+	<hbox>
+	  <text><label>Command:</label></text>
+	  <entry><variable export="true">VAR1</variable></entry>
+	</hbox>
 
-<entry><variable export="true">VAR2</variable></entry>
+	<hbox>
+	  <button>
+	    <label>Help</label>
+	    <action>${VAR1} --help > "${TMP_DIR}/${VAR1}.help.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.help.out"</action>
+	  </button>
 
-<hbox>
-<button space-expand="true" space-fill="true">
-<label>search</label>
-<input file stock="gtk-find"></input>
-<action>dmesg | grep ${VAR2} > ${TMP_FILE} && ${EDITOR} ${TMP_FILE} </action>
-</button>
+	  <button>
+	    <label>Whereis</label>
+	    <action>whereis ${VAR1} > "${TMP_DIR}/${VAR1}.whereis.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.whereis.out"</action>
+	  </button>
 
-</hbox>
-</frame>
-</vbox>
-</hbox>
+	  <button>
+	    <label>Which</label>
+	    <action>which ${VAR1} > "${TMP_DIR}/${VAR1}.which.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.which.out"</action>
+	  </button>
 
-<frame Commands Information>
-<hbox>
-<text> <label>Command:</label> </text>
-<entry><variable export="true">VAR1</variable></entry>
-</hbox>
+	  <button>
+	    <label>Version</label>
+	    <action>${VAR1} --version > "${TMP_DIR}/${VAR1}.version.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.version.out"</action>
+	  </button>
 
-<hbox>
-<button>
-<label>Help</label>
-<action>${VAR1} --help > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	  <button>
+	    <label>Manual</label>
+	    <action>man ${VAR1} > "${TMP_DIR}/${VAR1}.man.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.man.out"</action>
+	  </button>
+	</hbox>
+        </frame>
+	<hbox homogeneous="True">
+	  <frame>
+	  <vbox>
+	    <button homogeneous="true">
+	      <input file stock="gtk-index"></input>
+	      <label>Sensors</label>
+	      <action>sensors > "${TMP_DIR}/sensors.out" && ${EDITOR} "${TMP_DIR}/sensors.out"</action>
+	    </button>
 
-<button>
-<label>Whereis</label>
-<action>whereis ${VAR1} > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	    <button homogeneous="true">
+	      <input file stock="gtk-connect"></input>
+	      <label>Ethernet Interfaces</label>
+	      <action>ifconfig > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+	    </button>
 
-<button>
-<label>Which</label>
-<action>which ${VAR1} > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	    <button homogeneous="true">
+	      <input file stock="gtk-disconnect"></input>
+	      <label>Wireless Interfaces</label>
+	      <action>iwconfig > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+	    </button>
 
-<button>
-<label>Version</label>
-<action>${VAR1} --version > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	    <button homogeneous="true">
+	      <input file stock="gtk-save"></input>
+	      <label>Emerge logs</label>
+	      <action>sudo -A ${EDITOR} /var/log/emerge.log</action>
+	    </button>
 
-<button>
-<label>Manual</label>
-<action>man ${VAR1} > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
-</hbox>
-</frame>
-<hbox homogeneous="True">
+	    <button homogeneous="true">
+	      <input file stock="gtk-floppy"></input>
+	      <label>Hardware information </label>
+	      <action>sudo -A lshw > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+	    </button>
 
-<frame>
-<vbox>
-<button homogeneous="true">
-<input file stock="gtk-index"></input>
-<label>Sensors</label>
-<action>sensors > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	    <button homogeneous="true">
+	      <input file stock="gtk-print-preview"></input>
+	      <label>BIOS information</label>
+	      <action>sudo -A dmidecode | head -15 > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+	    </button>
 
-<button homogeneous="true">
-<input file stock="gtk-connect"></input>
-<label>Ethernet Interfaces</label>
-<action>ifconfig > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	    <button homogeneous="true">
+	      <input file stock="gtk-page-setup"></input>
+	      <label>PCI devices</label>
+	      <action>lspci > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+	    </button>
+	  </vbox>
+          </frame>
 
-<button homogeneous="true">
-<input file stock="gtk-disconnect"></input>
-<label>Wireless Interfaces</label>
-<action>iwconfig > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	  <frame>
+	  <vbox space-expand="true" space-fill="true">
+	    <hbox>
+	      <pixmap>
+		<input file stock="gtk-about"></input>
+	      </pixmap>
 
-<button homogeneous="true">
-<input file stock="gtk-save"></input>
-<label>Emerge logs</label>
-<action>sudo -A ${EDITOR} /var/log/emerge.log</action>
-</button>
+	      <menubar>
+		<menu>
+		  <menuitem>
+		    <label>Running kernel</label>
+		    <action>uname -a > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
 
-<button homogeneous="true">
-<input file stock="gtk-floppy"></input>
-<label>Hardware information </label>
-<action>sudo -A lshw > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+		  <menuitem>
+		    <label>Show Path</label>
+		    <action>echo "${PATH}" > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
+		  <label>System Information</label>
+		</menu>
+	      </menubar>
+	    </hbox>
 
-<button homogeneous="true">
-<input file stock="gtk-print-preview"></input>
-<label>BIOS information</label>
-<action>sudo -A dmidecode | head -15 > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
+	    <hbox>
+	      <pixmap>
+		<input file stock="gtk-preferences"></input>
+	      </pixmap>
 
-<button homogeneous="true">
-<input file stock="gtk-page-setup"></input>
-<label>PCI devices</label>
-<action>lspci > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</button>
-</vbox>
-</frame>
+	      <menubar>
+		<menu>
+		  <menuitem>
+		    <label>List @world contents</label>
+		    <action>sudo -A cat /var/lib/portage/world &> ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
+		  <menuitem>
+		    <label>List Installed Ebuilds</label>
+		    <action>cd /var/db/pkg/ && /bin/ls -d1 */* > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
+		  <menuitem>
+		    <label>Search Installed Ebuilds</label>
+		    <action>${GTKDIALOG} --center --program=SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
+		  <menuitem>
+		    <label>Search Portage tree</label>
+		    <action>${GTKDIALOG} --center --program=SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && '"${TERMINAL[@]}"' "emerge -S ${SEARCH}"</action>
+		  </menuitem>
+		  <label>Portage tree</label>
+		</menu>
+	      </menubar>
+	    </hbox>
 
-<frame>
-<vbox space-expand="true" space-fill="true">
-<hbox>
-<pixmap>
-<input file stock="gtk-about"></input>
-</pixmap>
+	    <hbox>
+	      <pixmap>
+		<input file stock="gtk-harddisk"></input>
+	      </pixmap>
 
-<menubar>
-<menu>
-<menuitem>
-<label>Running kernel</label>
-<action>uname -a > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
+	      <menubar>
+		<menu>
+		  <menuitem>
+		    <label>Hard drive partitions</label>
+		    <action>sudo -A fdisk -l > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
 
-<menuitem>
-<label>Show Path</label>
-<action>echo "${PATH}" > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
-<label>System Information</label>
-</menu>
-</menubar>
-</hbox>
+		  <menuitem>
+		    <label>Hard drive UUID</label>
+		    <action>blkid > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
 
-<hbox>
-<pixmap>
-<input file stock="gtk-preferences"></input>
-</pixmap>
+		  <menuitem>
+		    <label>Current mount points</label>
+		    <action>mount > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
 
-<menubar>
-<menu>
-<menuitem>
-<label>List @world contents</label>
-<action>sudo -A cat /var/lib/portage/world &> ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
-<menuitem>
-<label>List Installed Ebuilds</label>
-<action>cd /var/db/pkg/ && /bin/ls -d1 */* > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
-<menuitem>
-<label>Search Installed Ebuilds</label>
-<action>${GTKDIALOG} --center --program=SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && cd /var/db/pkg/ && /bin/ls -d1 */* | grep ${SEARCH} > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
-<menuitem>
-<label>Search Portage tree</label>
-<action>${GTKDIALOG} --center --program=SEARCH > ${TMP_FILE} && source ${TMP_FILE} && [[ "${EXIT}" == "OK" ]] && '"${TERMINAL[@]}"' "emerge -S ${SEARCH}"</action>
-</menuitem>
-<label>Portage tree</label>
-</menu>
-</menubar>
-</hbox>
+		  <menuitem>
+		    <label>Available disk space</label>
+		    <action>df -h > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
 
-<hbox>
-<pixmap>
-<input file stock="gtk-harddisk"></input>
-</pixmap>
+		  <menuitem>
+		    <label>Connected USB devices</label>
+		    <action>lsusb > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
 
-<menubar>
-<menu>
-<menuitem>
-<label>Hard drive partitions</label>
-<action>sudo -A fdisk -l > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
+		  <label>Devices</label>
+		</menu>
+	      </menubar>
+	    </hbox>
 
-<menuitem>
-<label>Hard drive UUID</label>
-<action>blkid > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
+	    <hbox>
+	      <pixmap>
+		<input file stock="gtk-cancel"></input>
+	      </pixmap>
 
-<menuitem>
-<label>Current mount points</label>
-<action>mount > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
+	      <menubar>
+		<menu>
+		  <menuitem>
+		    <label>X-Server information</label>
+		    <action>xdpyinfo > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
 
-<menuitem>
-<label>Available disk space</label>
-<action>df -h > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
+		  <menuitem>
+		    <label>GLX/OpenGL Information</label>
+		    <action>glxinfo > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
+		  </menuitem>
 
-<menuitem>
-<label>Connected USB devices</label>
-<action>lsusb > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
+		  <label>X-Server</label>
+		</menu>
+	      </menubar>
+	    </hbox>
 
-<label>Devices</label>
-</menu>
-</menubar>
-</hbox>
-
-<hbox>
-<pixmap>
-<input file stock="gtk-cancel"></input>
-</pixmap>
-
-<menubar>
-<menu>
-<menuitem>
-<label>X-Server information</label>
-<action>xdpyinfo > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
-
-<menuitem>
-<label>GLX/OpenGL Information</label>
-<action>glxinfo > ${TMP_FILE} && ${EDITOR} ${TMP_FILE}</action>
-</menuitem>
-
-<label>X-Server</label>
-</menu>
-</menubar>
-</hbox>
-
-<hbox>
-<pixmap>
-<input file stock="gtk-orientation-portrait"></input>
-</pixmap>
+	    <hbox>
+	      <pixmap>
+		<input file stock="gtk-orientation-portrait"></input>
+	      </pixmap>
 
 <menubar>
 <menu>
