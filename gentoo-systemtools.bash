@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # michaeltd 2019-12-12
 #shellcheck source=/dev/null
@@ -20,8 +20,6 @@ mkdir -vp "${TMP_DIR}"
 
 export TMP_FILE="/tmp/${$}.txt"
 
-#shellcheck disable=SC2034 # GO HOME SHELLCHECK, YOU'RE DRUNK!!!
-#[[ -z "${EDITOR}" ]] && export EDITOR="$(type -P vi 2> /dev/null||type -P vim 2> /dev/null||type -P nano 2> /dev/null)"
 #shellcheck disable=SC2155
 [[ -z "${TERMINAL}" ]] && export TERMINAL=( "$(type -P gnome-terminal||type -P konsole||type -P xfce4-terminal||type -P terminology||type -P xterm)" )
 
