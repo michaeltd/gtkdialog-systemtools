@@ -14,11 +14,9 @@ export FILE8=/etc/bash/bashrc
 
 #shellcheck disable=SC2155
 export GTKDIALOG="$(type -P gtkdialog 2> /dev/null)"
+
 export TMP_DIR="/tmp/${USER}/$(basename ${BASH_SOURCE[0]/\.bash/})/${$}/"
-
-mkdir -vp "${TMP_DIR}" 
-
-export TMP_FILE="/tmp/${$}.txt"
+mkdir -p "${TMP_DIR}" 
 
 #shellcheck disable=SC2155
 [[ -z "${TERMINAL}" ]] && export TERMINAL=( "$(type -P gnome-terminal||type -P konsole||type -P xfce4-terminal||type -P terminology||type -P xterm)" )
@@ -44,7 +42,7 @@ fi
 [[ -z "${EDITOR}" ]] && echo "You need to set a valid \$EDITOR." >&2 && exit 1
 [[ -z "${SUDO_ASKPASS}" ]] && echo "You need x11-ssh-askpass|ssh-askpass-fullscreen installed." >&2 && exit 1
 
-for i in "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"/*\.src; do
+for i in "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"/ui/*\.src; do
     source "${i}"
 done
 
