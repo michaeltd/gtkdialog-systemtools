@@ -3,17 +3,17 @@
 # michaeltd 2019-12-12
 #shellcheck source=/dev/null
 
-export FILE1=/etc/X11/xorg.conf.d
-export FILE2=/etc/fstab
-export FILE3=/etc/default/grub
-export FILE4=/etc/portage/repos.conf
-export FILE5=/etc/portage/make.conf
-export FILE6=/etc/rc.conf
-export FILE7=/etc/sudoers
-export FILE8=/etc/bash/bashrc
+declare -rx FILE1=/etc/X11/xorg.conf.d
+declare -rx FILE2=/etc/fstab
+declare -rx FILE3=/etc/default/grub
+declare -rx FILE4=/etc/portage/repos.conf
+declare -rx FILE5=/etc/portage/make.conf
+declare -rx FILE6=/etc/rc.conf
+declare -rx FILE7=/etc/sudoers
+declare -rx FILE8=/etc/bash/bashrc
 
 #shellcheck disable=SC2155
-export GTKDIALOG="$(type -P gtkdialog 2> /dev/null)"
+declare -rx GTKDIALOG="$(type -P gtkdialog 2> /dev/null)"
 
 export TMP_DIR="/tmp/${USER}/$(basename ${BASH_SOURCE[0]/\.bash/})/${$}/"
 mkdir -p "${TMP_DIR}" 
