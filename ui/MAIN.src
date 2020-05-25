@@ -48,31 +48,30 @@ export MAIN='
 	  <text><label>Command:</label></text>
 	  <entry><variable export="true">VAR1</variable></entry>
 	</hbox>
-
 	<hbox>
-	  <button>
-	    <label>Help</label>
-	    <action>${VAR1} --help > "${TMP_DIR}/${VAR1}.help.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.help.out"</action>
-	  </button>
-
 	  <button>
 	    <label>Whereis</label>
 	    <action>whereis ${VAR1} > "${TMP_DIR}/${VAR1}.whereis.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.whereis.out"</action>
 	  </button>
-
 	  <button>
 	    <label>Which</label>
 	    <action>which ${VAR1} > "${TMP_DIR}/${VAR1}.which.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.which.out"</action>
 	  </button>
-
 	  <button>
 	    <label>Version</label>
 	    <action>${VAR1} --version > "${TMP_DIR}/${VAR1}.version.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.version.out"</action>
 	  </button>
-
+	  <button>
+	    <label>Help</label>
+	    <action>${VAR1} --help > "${TMP_DIR}/${VAR1}.help.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.help.out"</action>
+	  </button>
 	  <button>
 	    <label>Manual</label>
 	    <action>man ${VAR1} > "${TMP_DIR}/${VAR1}.man.out" && ${EDITOR} "${TMP_DIR}/${VAR1}.man.out"</action>
+	  </button>
+	  <button>
+	    <label>Info</label>
+	    <action>${TERMINAL[@]} info ${VAR1}</action>
 	  </button>
 	</hbox>
         </frame>
