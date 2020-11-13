@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # michaeltd 2019-12-12
-#shellcheck source=/dev/null
+#shellcheck source=/dev/null disable=SC2155,SC2128
 
 declare -rx FILE1=/etc/X11/xorg.conf.d
 declare -rx FILE2=/etc/fstab
@@ -12,14 +12,13 @@ declare -rx FILE6=/etc/rc.conf
 declare -rx FILE7=/etc/sudoers
 declare -rx FILE8=/etc/bash/bashrc
 
-#shellcheck disable=SC2155
+
 declare -rx GTKDIALOG="$(type -P gtkdialog 2> /dev/null)"
 
-export TMP_DIR="/tmp/${USER}/$(basename ${BASH_SOURCE[0]/\.bash/})/${$}/"
+export TMP_DIR="/tmp/${USER}/$(basename "${BASH_SOURCE[0]/\.bash/}")/${$}/"
 mkdir -p "${TMP_DIR}" 
 
-#shellcheck disable=SC2155
-[[ -z "${TERMINAL}" ]] && export TERMINAL=( "$(type -P gnome-terminal||type -P konsole||type -P xfce4-terminal||type -P terminology||type -P xterm)" )
+[[ -z "${TERMINAL}" ]] && export TERMINAL=("$(type -P gnome-terminal||type -P konsole||type -P xfce4-terminal||type -P terminology||type -P xterm)")
 
 # DONT MESS WITH VOODOO!!!
 if [[ "${TERMINAL##*/}" ==  "gnome-terminal" ]];then
@@ -30,11 +29,8 @@ else
     export TERMINAL+=( "--hold" "-e" )
 fi
 
-#shellcheck disable=SC2155
 [[ -z "${EDITOR}" ]] && export EDITOR="$(type -P gedit||type -P kate||type -P mousepad||type -P gvim)"
-#shellcheck disable=SC2155
 [[ -z "${SUDO_ASKPASS}" ]] && export SUDO_ASKPASS="$(type -P x11-ssh-askpass||type -P ssh-askpass-fullscreen)"
-#shellcheck disable=SC2155
 [[ -z "${PAGER}" ]] && export PAGER="$(type -P most||type -P less||type -P more)"
 
 [[ -z "${GTKDIALOG}" ]] && echo "You need gtkdialog installed." >&2 && exit 1
