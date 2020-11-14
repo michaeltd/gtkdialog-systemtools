@@ -3,6 +3,8 @@
 # michaeltd 2019-12-12
 #shellcheck source=/dev/null disable=SC2155,SC2128
 
+[[ "$(source /etc/os-release; echo "${ID}")" == "gentoo" ]] || { echo "This script is made for use on Gentoo systems!" >&2; exit 1; }
+
 declare -rx FILE1=/etc/X11/xorg.conf.d
 declare -rx FILE2=/etc/fstab
 declare -rx FILE3=/etc/default/grub
