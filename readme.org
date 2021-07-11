@@ -16,9 +16,4 @@ Based on: https://pclosmag.com/html/Issues/200910/page21.html
   + As a collection of various gentoo configuration files and reporting tools.
   + For direct access to troubleshooting information.
   + For central {hard,soft}ware reporting.
-  + Convenience.
   + To fiddle with gtkdialog.
-  + I couldn't resist!
-  + Why not?
-  + coz... reasons...
-  + I'm sorry...
